@@ -67,3 +67,19 @@ once we use this command, we are given a few results containing a lot of ‘=’
 We are given only one file, and it is revealed to be a Base64 encrypted file. The command ‘base64’ is used to both encrypt and decrypt files into the base64 format.
 
 We use the command “base64 -d data.txt”. the -d flag is to indicate that we are decrypting from base64 and not encrypting. We recieve the flag after using this command.
+
+# Bandit11:
+
+This is probably going to be the most confusing one out of the ones we faced till now, so its going to be a bit hard, but don’t give up. We are given a text file, that is encrypted using the caesar cipher.
+
+We are going to use a command ‘tr’ that takes in text, and replaces characters according to the characters we want.
+
+for eg. cat data.txt | tr -”a-m” “n-z”
+
+this command takes the text, replaces every character from a-z with n-z, and is a very basic application of tr.
+
+the command we are going to use is cat data.txt | tr “a-zA-Z” “n-za-mN-ZA-M”
+
+It takes “a-zA-Z” as one array, and “n-za-mN-ZA-M” as the second array, both having 52 characters.
+
+a-z has 26 characters, and n-za-m has 26 characters. a-m(the first 13 characters get replaced by n-z) and n-z(the second 13 characters get replaced by a-m). The same applies for the capital letters A-Z → N-ZA-M (A-Z is 26 characters, N-ZA-M is also 26 characters)
