@@ -83,3 +83,5 @@ the command we are going to use is cat data.txt | tr “a-zA-Z” “n-za-mN-ZA-
 It takes “a-zA-Z” as one array, and “n-za-mN-ZA-M” as the second array, both having 52 characters.
 
 a-z has 26 characters, and n-za-m has 26 characters. a-m(the first 13 characters get replaced by n-z) and n-z(the second 13 characters get replaced by a-m). The same applies for the capital letters A-Z → N-ZA-M (A-Z is 26 characters, N-ZA-M is also 26 characters)
+
+However, there is one simple shortcut instead of getting into all this mess. Just copy the text from using cat on the txt file, go to google, search for a ceaser cipher, post the texct into it, and if asked for a key or a number give 13.
