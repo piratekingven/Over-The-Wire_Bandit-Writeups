@@ -85,3 +85,23 @@ It takes “a-zA-Z” as one array, and “n-za-mN-ZA-M” as the second array, 
 a-z has 26 characters, and n-za-m has 26 characters. a-m(the first 13 characters get replaced by n-z) and n-z(the second 13 characters get replaced by a-m). The same applies for the capital letters A-Z → N-ZA-M (A-Z is 26 characters, N-ZA-M is also 26 characters)
 
 However, there is one simple shortcut instead of getting into all this mess. Just copy the text from using cat on the txt file, go to google, search for a ceaser cipher, post the texct into it, and if asked for a key or a number give 13.
+
+# Bandit12 :
+
+Bandit 12 is a bit of a lengthy, but rather simple challenge. Bandit 12 provides us a file which is a hexdump (think of it like a different format of representing text for now) of a file, which itself has been compressed multiple times through different formats.  
+
+we have to first create a temporary directory and copy the file to that directory as we dont have the necessary permissions to work on the file in this directory. The command we are going to use for this is mktemp -d (This command creates a temporary directory for us and then gives us the path of that directory, which we can copy the file to using cp [file] [path]).
+
+now, we are going to use 5 commands mostly, 1 for checking the file type, 4 for conversion and decompression : file (used for checking file type), xxd (used for converting hexdump into binary and vice-versa), gzip,bzip2 and tar (used for decompression).
+
+after u copy the file into the new temp directory, use xxd -d data.txt > [filename that u want]
+
+this takes the hexdump, makes it raw binary, puts into a new file.
+
+use file command on the new file, and if it is a gzip file, rename it by using mv [filename] [filename].gz, then use gzip -d [filename.gz] (decompresses from gzip format)
+
+This will give u a new file, check its file type by using the file command, if it is a bzip2 file, use mv [filename] [filename.bz2], and then use bzip2 -d [filename.bz2] (decompresses from bzip2 format)
+
+If file type is tar, use the command tar -xf [filename] (dearchives the file we want from this file, -x is for dearchiving and f is specifying that it is a file)
+
+Keep repeating these 3 steps until it tells u that it is ascii text when u use file command on the file, and then use cat on the file to get the flag.
