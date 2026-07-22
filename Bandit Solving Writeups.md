@@ -105,3 +105,25 @@ This will give u a new file, check its file type by using the file command, if i
 If file type is tar, use the command tar -xf [filename] (dearchives the file we want from this file, -x is for dearchiving and f is specifying that it is a file)
 
 Keep repeating these 3 steps until it tells u that it is ascii text when u use file command on the file, and then use cat on the file to get the flag.
+
+# Bandit13 :
+
+bandit 13 introduces us to public keys and private keys. I won’t get into it too much, but basically, we can log into computers (which have a public key) using our own private keys (as an alternative to using passwords).
+
+The password for the next level is stored in a directory, that can only be read by the user bandit14, but as we are bandit13, we cannot read the password. However, they have given us the private key used to log into bandit14 user. 
+
+What we’re going to do is, we’re going to use cat on the private key file, copy it, exit the current bandit13 session, return to our own desktop, create a new text file, and paste the private key over there.
+
+next, we are going to use a command called chmod, which is used to change the permissions of a file. We are going to use chmod 700 [filename]. This is going to make it that only the user on our desktop has the permission to do anything with the file. (We are using chmod to change permissions, as the next command we are going to use that is ssh, wont accept files that have too many permissions.)
+
+the next command we use is
+
+ssh bandit14@bandit.labs.overthewire.org -p 2220 -i [filename]
+
+(the -i flag is used to provide the private key filename)
+
+This will then log us into the machine as the bandit14 user.
+
+then, we have to change into the directory that has the password by using “cd **/etc/bandit_pass/”**
+
+then, we use cat bandit14, and it will output the password.
