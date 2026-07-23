@@ -127,3 +127,13 @@ This will then log us into the machine as the bandit14 user.
 then, we have to change into the directory that has the password by using “cd **/etc/bandit_pass/”**
 
 then, we use cat bandit14, and it will output the password.
+
+# Bandit14 :
+
+Bandit 14 is a simple challenge, that expects us to learn a bit about networking before starting the challenge. 
+
+We have to submit this level’s password to this computer on port 30000 to get the next level’s password (Before starting this chapter, I’d advice you to learn a bit about localhost, ip addresses and ports.)
+
+We are going to use the command nc localhost 30000 (this command allows us to start a communication channel with localhost, which basically means communicating with the same computer, on port 30,000)
+
+then, we are going to take copy this room’s password, and then paste it into the terminal, and then we will receive the password to the next room as the response.
