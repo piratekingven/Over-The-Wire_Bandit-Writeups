@@ -137,3 +137,10 @@ We have to submit this level’s password to this computer on port 30000 to get 
 We are going to use the command nc localhost 30000 (this command allows us to start a communication channel with localhost, which basically means communicating with the same computer, on port 30,000)
 
 then, we are going to take copy this room’s password, and then paste it into the terminal, and then we will receive the password to the next room as the response.
+
+# Bandit15 :
+
+Bandit 15 is a simple challenge as well, that builds upon the experience we got from Bandit14. In Bandit 15, we have to do the same thing as bandit 14, but instead on port 30001, however we have to use ssl/tls encryption (in the previous challenge, we didnt use encryption, which means our communication was potentially insecure and could’ve been spied on).
+We are going to use the command openssl (which is a massive cryptographic library used to implement ssl/tls) and the subcommand s_client (which is part of the openssl suite of commands, s_client is used to start an ssl/tls communication session with someone).
+The command is openssl s_client -connect localhost:30001
+This is going to start an ssl/tls encrypted communication session with port 30001, and then we must paste the password of this level into the terminal, and then we will receive the password to the next level.
