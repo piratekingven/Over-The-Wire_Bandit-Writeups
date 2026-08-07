@@ -141,15 +141,19 @@ then, we are going to take copy this room’s password, and then paste it into t
 # Bandit15 :
 
 Bandit 15 is a simple challenge as well, that builds upon the experience we got from Bandit14. In Bandit 15, we have to do the same thing as bandit 14, but instead on port 30001, however we have to use ssl/tls encryption (in the previous challenge, we didnt use encryption, which means our communication was potentially insecure and could’ve been spied on).
+
 We are going to use the command openssl (which is a massive cryptographic library used to implement ssl/tls) and the subcommand s_client (which is part of the openssl suite of commands, s_client is used to start an ssl/tls communication session with someone).
+
 The command is openssl s_client -connect localhost:30001
 This is going to start an ssl/tls encrypted communication session with port 30001, and then we must paste the password of this level into the terminal, and then we will receive the password to the next level.
 
 # Bandit16 :
 
 Bandit 16 introduces us a new tool called nmap, which lets us scan networks and devices on that network, and it is a very powerful tool. We have to scan ports in range of 31000-32000 on the localhost (which we do using nmap), then find out which service is running on the ports (we need to then start an ssl/tls communication session with a server running on one those ports, and paste the password of the current machine into it).
+
 The first command we are going to use is
 nmap localhost -sV -p 31000-32000 [ This command makes nmap scan the localhost’s ports in range 31000-32000, denoted by the flag -p. The -sV flag is to for service detection. It allows us to detect which service is running on which port, which allows us to tell where the server is running on. Once we run this command, we find out that the port is 31970.
+
 The second command we are going to use is 
 openssl s_client -connect localhost:31970 -quiet
 This allows us to start an ssl/tls certified communication with the localhost on port 31970. The -quiet flag is to help us avoid some trouble due to some possible interactions with s_client’s other functionalities and the password that we are going to paste once the communication has been established.
