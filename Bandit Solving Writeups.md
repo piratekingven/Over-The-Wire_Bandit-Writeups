@@ -158,3 +158,13 @@ The second command we are going to use is
 openssl s_client -connect localhost:31970 -quiet
 This allows us to start an ssl/tls certified communication with the localhost on port 31970. The -quiet flag is to help us avoid some trouble due to some possible interactions with s_client’s other functionalities and the password that we are going to paste once the communication has been established.
 Once it is established, paste the password and it will return the private key for the next room as a response.
+
+# Bandit17 :
+
+Bandit17 is a very easy challenge, requiring only one simple command. We are given 2 text files, with only 1 line (the password for the next room) being different between them. We are going to use the command 
+
+diff passwords.new passwords.old
+
+it will then output 2 lines, the first line being the difference in passwords.new, and the second line being the difference in passwords.old.
+
+copy the first line, as it is our password for the next room.
