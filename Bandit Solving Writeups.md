@@ -168,3 +168,22 @@ diff passwords.new passwords.old
 it will then output 2 lines, the first line being the difference in passwords.new, and the second line being the difference in passwords.old.
 
 copy the first line, as it is our password for the next room.
+
+
+# Bandit18 :
+
+Before we get into Bandit18, let us learn a small concept : What is a shell?
+
+In simple words, A shell is simply a software that allows us to interact with our operating system and allows us to perform tasks. All the commands we have typed into the terminal up until now are interpreted by the shell that lies underneath. Most linux computers have a few shells that can be used. The one that is usually being used by default (and is being used in our case as well) is bash.
+
+The .bashrc file that is talked about in the description is a configuration file for the bash shell that is launched everytime we log in using ssh. So, we simply have to log in using ssh with a non bash shell.
+
+All our possible shells are stored in /etc/shells on our linux computer.
+
+type cat/etc/shells to get a list of the possible shells we have. (for eg, i got /bin/sh)
+
+now, we type 
+
+ssh bandit18@bandit.labs.overthewire.org -p 2220 -t “bin/sh” 
+
+this logs in with ssh and using a different shell, which allows us to stay without getting logged out. Once logged in, use ls and cat the readme file that appears for the password.
