@@ -187,3 +187,11 @@ now, we type
 ssh bandit18@bandit.labs.overthewire.org -p 2220 -t “bin/sh” 
 
 this logs in with ssh and using a different shell, which allows us to stay without getting logged out. Once logged in, use ls and cat the readme file that appears for the password.
+
+Bandit19 : 
+Bandit 19 gives us an executable file, that allows us to run commands given to it as the user 20. This is very useful for us, as the password which is stored in /etc/bandit_pass/bandit20 (which the description of the problem tells us) cannot be cat’d by user 19 (which we are right now).
+to execute the file, we have to use ./bandit20-do
+which then tells us that we can use this file to execute commands as another user. 
+
+we are going to use the command ./bandit20-do cat /etc/bandit_pass/bandit20
+which allows us to cat the file as user 20, which will then give us the password for the next round.
