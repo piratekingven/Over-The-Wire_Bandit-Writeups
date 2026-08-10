@@ -196,3 +196,18 @@ which then tells us that we can use this file to execute commands as another use
 
 we are going to use the command ./bandit20-do cat /etc/bandit_pass/bandit20
 which allows us to cat the file as user 20, which will then give us the password for the next round.
+
+# Bandit20: 
+Bandit20 gives us a file, that allows us to connect to a port, and if we receive the password to the current room from that port, then this file will output the password to the next room.
+We have to first setup something that will output the password to the current room from a port of our choice. For that, we will use netcat/nc’s listener option, which can output a text of our choice.
+
+We will use the command 
+echo “password-to-current-room” | nc -p 3333 -l &
+
+piping echo into nc, and the -p flag is to specify the port, and -l flag is to tell that it is to listen.
+the & in the end is to tell the shell that the process has to run in the background and not the foreground. without the &, it will run in the foreground and our terminal will become unresponsive to new commands until the nc listener is done. We can give any unused port of our choice for the -p flag by the way.
+
+Once the nc listener is setup, use the command 
+./suconnect 3333(or whatever port number you gave)
+
+will output the password of the next room then.
