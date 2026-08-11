@@ -211,3 +211,19 @@ Once the nc listener is setup, use the command
 ./suconnect 3333(or whatever port number you gave)
 
 will output the password of the next room then.
+
+# Bandit21:
+Bandit 21 introduces something called cron and cronjobs. Cron is a program that allows us to schedule processes at time intervals of our choice, and cronjobs are processes that cron is running.
+We are told to look at /etc/cron.d/ , so that’s exactly what we’ll do.
+cd /etc/cron.d to go into the directory, and click ls to see everything in the directory.
+
+We’ll get a lot of cronjob configuration files, but the ones that we’ll look at is cronjob_bandit22 (because we need 22’s password).
+We get @reboot bandit22 /usr/bin/cronjob_bandit22.sh & and some more stuff.
+this basically means that this job runs at boot of the computer, using bandit22 user’s permissions, and the script that runs is cronjob_bandit22.sh. So, let’s look at the script itself then.
+cat /usr/bin/cronjob_bandit22.sh
+
+we then get 2 lines of linux commands that basically tell us this :
+the first line with the chmod 644 tell us that there is temp file that is being made which is allowed to be read by everyone.
+the second file prints the contents of /etc/bandit_pass/bandit22 (the file that contains the password to 22) into the temp file, so we just have to print the temp file to get the password.
+
+click cat /tmp/tmpfilename and you’ll get the password to 22.
