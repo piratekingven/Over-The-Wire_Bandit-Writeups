@@ -232,7 +232,7 @@ click cat /tmp/tmpfilename and you’ll get the password to 22.
 Mostly the same as Bandit 21, we have to investigate the script that runs as the cronjob.
 cd /etc/cron.d to go the cronjobs directory, and click cat cronjob_bandit23 to get more information about the cronjob.
 We get to know that it ‘s owned by Bandit23, and it’s path as well. click cat /usr/bin/cronjob_bandit.sh to print the script. whoami is a command that returns the current logged in user, but in the case of cronjobs, they’re executed as the owner of the file (that is bandit23, not 22).
-the second line in the script takes the returned name from the whoami command, runs it through an md5 hash algorithm to create a temporary file to store the password of bandit23.
+the second line in the script takes the returned name from the whoami command, runs it through an md5 hash algorithm to create a temporary path for a temporary file to store the password of bandit23.
 
 The description tells us to run the command once, so lets do it by clicking /usr/bin/cronjob_bandit23.sh (however, when we run it like this, it runs as bandit22 and not 23, as we are running it and not cron itself, and hence whoami in the script evaluates to bandit 22 and not 23). it tells us that it has created a file and stored the password there. however, the password stored there will be 22’s password as whoami in the script evaluates to 22 and not 23.
 TO get the path for 23, we need to use the same temp file path creator that the script uses, so lets type in
@@ -243,4 +243,4 @@ echo I am user bandit23 | md5sum | cut -d  ‘  ‘ -f  1
 8ca319486bfbbc3663ea0fbe8132634
 
 
-you will receive this string, and then use cat tmp/8ca319486bfbbc3663ea0fbe8132634, which ill give us the password for the next round.
+you will receive this string, and then use cat tmp/8ca319486bfbbc3663ea0fbe8132634, which will give us the password for the next round.
