@@ -244,3 +244,26 @@ echo I am user bandit23 | md5sum | cut -d  ‘  ‘ -f  1
 
 
 you will receive this string, and then use cat tmp/8ca319486bfbbc3663ea0fbe8132634, which will give us the password for the next round.
+
+# Bandit23 :
+Bandit 23 might be a bit of a headache, but bear with it. Once again we have to deal with cronjobs, so let’s get into it. Let’s cd into /etc/cron.d/ to check out the cronjobs. 
+cat cronjob_bandit24 to see who owns the job (it’s obviously bandit24 though) and the path of the script being executed. Cat /usr/bin/cronjob_bandit24.sh to take a look at the script.
+To be very honest, I didn’t know understand what this script did, so i just gave it to AI and asked it to tell me what it does. 
+Basically, this script has a variable myname, which it stores the return value of whoami into it(which will be bandit24, as it is 24’s cronjob). It then cd’s into a directory called /var/spool/myname/foo, and then executes and deletes every script that is owned by bandit23 in that directory. To get the password, we have to create and place a script owned by bandit23 which cats the contents of 
+
+/etc/bandit_pass/bandit24 (which is where bandit24's password is stored)
+Because we don’t have the permissions to create a file anywhere, we have to create a temporary directory (where we will have the permission to do things)
+mktemp - d (to create a temp directory, this will create a dir and then return it’s path as well)
+nano tempdirpath/bandit23.sh (opens up the text editor for a text file in that directory with the name bandit3.sh)
+#!/bin/bash
+cat /etc/bandit_pass/bandit24 > tempdirectorypath/password
+​
+type this code into the text editor. the first line indicates that this is a bash file, and the second line prints the contents of /etc/bandit_pass/bandit24 (the password of bandit 24) into a file called password in the temporary directory.
+
+chmod 777 tempdirectorypath/bandit23.sh (to give full access to all users)
+chmod 777 tempdirectorypath (to give full access)
+touch tempdirectorypath/password ( i think u can skip this command and the next, because the cat in our script should be able to create the file istelf, considering we chmod 777 the directory itself, but running these commands for safety regardless.)
+chmod 777 tempdirectorypath/password
+cp tempdirectorypath/bandit23.sh /var/spool/bandit24/foo/bandit23.sh (copies the script into the directory where the scripts are executed by the cronjob)
+
+wait a minute or two, and cat /tempdirpath/password and it’ll print the password. 
